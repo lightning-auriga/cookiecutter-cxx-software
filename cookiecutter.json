@@ -7,6 +7,7 @@
     "repo_capitalized": "{{ cookiecutter.repo_name.upper() }}",
     "project_short_description": "Project that does something cool no doubt",
     "version": "0.1.0",
+    "testing_with_TAP": ["yes", "no"],
     "require_boost_headers": ["yes", "no"],
     "require_boost_program_options": ["yes", "no"],
     "require_boost_filesystem": ["yes", "no"],
