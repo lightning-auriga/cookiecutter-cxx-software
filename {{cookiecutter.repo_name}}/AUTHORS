@@ -1,0 +1,2 @@
+{{ cookiecutter.full_name }}: all primary source development
+{%- if cookiecutter.full_name != "Lightning Auriga" %}Lightning Auriga: cookiecutter template{%- endif %}
