@@ -36,4 +36,9 @@ git init -b default > /dev/null 2>&1
 rm .gitignore
 {%- endif %}
 
+{%- if cookiecutter.testing_with_TAP == "no" %}
+rm tap-driver.sh
+rm -Rf tests
+{%- endif %}
+
 exit 0
