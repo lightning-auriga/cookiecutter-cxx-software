@@ -64,7 +64,7 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
 	 - periodically there are some incompatibility issues between `configure` and `conda`. if so, you may need to override
 	   some default locations detected by `configure`. for example, you might override the detected compiler and boost locations
 	   with a command such as:
-	   `CC=gcc CXX=g++ ./configure --with-boost=/local/install/stage --with-boost-libdir=/home/palmercd/Development/stage/lib`
+	   `CC=gcc CXX=g++ ./configure --with-boost=/local/install/stage --with-boost-libdir=/local/install/stage/lib`
   - run `make`
   
 {%- if cookiecutter.testing_with_TAP == "yes" %}
