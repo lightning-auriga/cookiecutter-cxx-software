@@ -8,4 +8,4 @@ Description: File I/O Interface Supporting Compression and Modding
 Requires: gcc >= 8.2.0
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir}
-Cflags: -I${includedir}/fileinterface-1.0 -I${libdir}/fileinterface-1.0/include
+Cflags: -I${includedir}/finter-1.0 -I${libdir}/finter-1.0/include

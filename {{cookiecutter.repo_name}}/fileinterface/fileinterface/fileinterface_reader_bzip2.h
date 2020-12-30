@@ -1,16 +1,16 @@
 /*!
-  \file fileinterface_reader_bzip2.h
+  \file finter_reader_bzip2.h
   \brief bzip2-specific reader class definitions
   \copyright Released under the MIT License.
   Copyright 2020 Lightning Auriga
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_BZIP2_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_BZIP2_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_BZIP2_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_BZIP2_H_
 
-#include "fileinterface/config.h"
-#ifdef FILEINTERFACE_HAVE_LIBBZ2
-#include "fileinterface/fileinterface_reader_parent.h"
+#include "finter/config.h"
+#ifdef FINTER_HAVE_LIBBZ2
+#include "finter/finter_reader_parent.h"
 
 #include <string>
 #include <cstdlib>
@@ -20,22 +20,22 @@
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_reader_bzip2
+    \class finter_reader_bzip2
     \brief interface for bzip2 file input that doesn't break my brain
    */
-  class fileinterface_reader_bzip2 : public fileinterface_reader {
+  class finter_reader_bzip2 : public finter_reader {
   public:
     /*!
       \brief constructor
      */
-    fileinterface_reader_bzip2();
+    finter_reader_bzip2();
     /*!
       \brief destructor
 
       This cleanly handles memory allocation problems, so it's safe to just delete
       the allocated object in userspace.
      */
-    ~fileinterface_reader_bzip2() throw() {close(); delete [] _buf;}
+    ~finter_reader_bzip2() throw() {close(); delete [] _buf;}
     /*!
       \brief open a file
       @param filename name of file to open
@@ -102,6 +102,6 @@ namespace {{ cookiecutter.repo_name }} {
   };
 }
 
-#endif //FILEINTERFACE_HAVE_LIBBZ2
+#endif //FINTER_HAVE_LIBBZ2
 
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_BZIP2_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_BZIP2_H_

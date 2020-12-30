@@ -52,11 +52,11 @@ AX_BOOST_PROGRAM_OPTIONS
 AX_BOOST_IOSTREAMS
 {%- endif %}
 
-{%- if cookiecutter.include_fileinterface == "yes" %}
+{%- if cookiecutter.include_finter == "yes" %}
 AX_CHECK_ZLIB
 {%- endif %}
 
-{%- if cookiecutter.include_fileinterface == "yes" %}
+{%- if cookiecutter.include_finter == "yes" %}
 AX_CHECK_BZIP2
 {%- endif %}
 
@@ -73,8 +73,8 @@ AC_CONFIG_FILES([
  {{ cookiecutter.repo_name }}-{{ cookiecutter.version }}.pc
 ])
 
-{%- if cookiecutter.include_fileinterface == "yes" %}
-AC_CONFIG_SUBDIRS([fileinterface])
+{%- if cookiecutter.include_finter == "yes" %}
+AC_CONFIG_SUBDIRS([finter])
 {%- endif %}
 
 AC_OUTPUT
