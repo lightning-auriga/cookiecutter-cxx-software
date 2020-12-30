@@ -1,34 +1,34 @@
 /*!
-  \file fileinterface_reader_parent.h
+  \file finter_reader_parent.h
   \brief virtual shared reader class declarations
   \copyright Released under the MIT License.
   Copyright 2020 Cameron Palmer
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_PARENT_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_PARENT_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_PARENT_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_PARENT_H_
 
 #include <string>
 #include <ios>
 
-#include "fileinterface/helper.h"
+#include "finter/helper.h"
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_reader
-    \brief parent class for all fileinterface readers
+    \class finter_reader
+    \brief parent class for all finter readers
    */
-  class fileinterface_reader {
+  class finter_reader {
   public:
     /*!
       \brief constructor
     */
-    fileinterface_reader() 
+    finter_reader() 
       : _good(true), _bad(false), _fail(false) {}
     /*!
       \brief virtual destructor
      */
-    virtual ~fileinterface_reader() throw() {}
+    virtual ~finter_reader() throw() {}
     /*!
       \brief open a file, converting name from string to char*
       @param filename name of file to open
@@ -91,4 +91,4 @@ namespace {{ cookiecutter.repo_name }} {
   };
 }
 
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_PARENT_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_PARENT_H_

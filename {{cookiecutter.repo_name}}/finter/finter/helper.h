@@ -1,12 +1,12 @@
 /*!
   \file helper.h
-  \brief fileinterface utility functions
+  \brief finter utility functions
   \copyright Released under the MIT License.
   Copyright 2020 Cameron Palmer
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_HELPER_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_HELPER_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_HELPER_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_HELPER_H_
 
 #include <string>
 #include <sstream>
@@ -28,4 +28,4 @@ namespace {{ cookiecutter.repo_name }} {
 #endif
   }
 }
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_HELPER_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_HELPER_H_

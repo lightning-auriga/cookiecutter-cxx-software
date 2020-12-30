@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-{%- if cookiecutter.include_fileinterface != "yes" %}
-rm -Rf fileinterface
+{%- if cookiecutter.include_finter != "yes" %}
+rm -Rf finter
 {%- endif %}
 
 function download_file {

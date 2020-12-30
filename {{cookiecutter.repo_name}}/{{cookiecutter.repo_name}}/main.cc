@@ -21,8 +21,8 @@
 #include "{{ cookiecutter.repo_name }}/cargs.h"
 {%- endif %}
 
-{%- if cookiecutter.include_fileinterface == "yes" %}
-#include "fileinterface/fileinterface.h"
+{%- if cookiecutter.include_finter == "yes" %}
+#include "finter/finter.h"
 {%- endif %}
 
 /*!
