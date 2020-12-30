@@ -12,7 +12,7 @@
     "require_boost_filesystem": ["yes", "no"],
     "require_boost_iostreams": ["yes", "no"],
     "require_yaml_cpp": ["yes", "no"],
-    "include_fileinterface": ["yes", "no"],
+    "include_finter": ["yes", "no"],
     "git_tracking": ["yes", "no"],
     "_copy_without_render": ["*.m4"]
 }

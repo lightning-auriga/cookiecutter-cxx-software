@@ -1,14 +1,14 @@
 /*!
-  \file fileinterface_reader_flat.h
+  \file finter_reader_flat.h
   \brief standardized interface for uncompressed file input
   \copyright Released under the MIT License.
   Copyright 2020 Lightning Auriga
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_FLAT_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_FLAT_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_FLAT_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_FLAT_H_
 
-#include "fileinterface/fileinterface_reader_parent.h"
+#include "finter/finter_reader_parent.h"
 
 #include <string>
 #include <fstream>
@@ -16,20 +16,20 @@
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_reader_flat
+    \class finter_reader_flat
     \brief for compatibility, interface for uncompressed files using ifstreams
    */
-  class fileinterface_reader_flat : public fileinterface_reader {
+  class finter_reader_flat : public finter_reader {
   public:
     /*!
       \brief constructor
      */
-    fileinterface_reader_flat()
-      : fileinterface_reader() {}
+    finter_reader_flat()
+      : finter_reader() {}
     /*!
       \brief destructor
      */
-    ~fileinterface_reader_flat() throw() {}
+    ~finter_reader_flat() throw() {}
     /*!
       \brief open a file
       @param filename name of file to open
@@ -85,4 +85,4 @@ namespace {{ cookiecutter.repo_name }} {
   };
 }
 
-#endif // {{ cookiecutter.repo_capitalized}}_FILEINTERFACE_FILEINTERFACE_READER_FLAT_H_
+#endif // {{ cookiecutter.repo_capitalized}}_FINTER_FINTER_READER_FLAT_H_

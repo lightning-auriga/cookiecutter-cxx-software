@@ -2,16 +2,16 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(fileinterface, 1.0.0, palmercd5@gmail.com)
+AC_INIT(finter, 1.0.0, palmercd5@gmail.com)
 AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
 AM_SILENT_RULES([yes])
 AM_PROG_AR
 LT_INIT
-AC_CONFIG_SRCDIR([fileinterface/fileinterface.h])
+AC_CONFIG_SRCDIR([finter/finter.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([temp_config.h])
-AX_PREFIX_CONFIG_H([fileinterface/config.h])
+AX_PREFIX_CONFIG_H([finter/config.h])
 
 # Checks for programs.
 AC_LANG([C++])
@@ -47,6 +47,6 @@ AC_CHECK_LIB([m],[cos])
 
 AC_CONFIG_FILES([
  Makefile
- fileinterface-1.0.0.pc
+ finter-1.0.0.pc
 ])
 AC_OUTPUT
