@@ -1,16 +1,16 @@
 /*!
-  \file fileinterface_reader_gzip.cc
-  \brief implementations for fileinterface zlib (gzip) file input
+  \file finter_reader_gzip.cc
+  \brief implementations for finter zlib (gzip) file input
   \copyright Released under the MIT License.
   Copyright 2020 Cameron Palmer
  */
 
-#include "fileinterface/fileinterface_reader_gzip.h"
+#include "finter/finter_reader_gzip.h"
 
-#ifdef FILEINTERFACE_HAVE_LIBZ
+#ifdef FINTER_HAVE_LIBZ
 
-{{ cookiecutter.repo_name }}::fileinterface_reader_gzip::fileinterface_reader_gzip()
-  : {{ cookiecutter.repo_name }}::fileinterface_reader(),
+{{ cookiecutter.repo_name }}::finter_reader_gzip::finter_reader_gzip()
+  : {{ cookiecutter.repo_name }}::finter_reader(),
     _gz_input(0),
     _eof(false),
     _buf(0),
@@ -20,18 +20,18 @@
     _buf[i] = '\0';
 }
 
-void {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::open(const char *filename) {
+void {{ cookiecutter.repo_name }}::finter_reader_gzip::open(const char *filename) {
   if (!_gz_input) {
     _gz_input = gzopen(filename, "rb");
     if (!_gz_input)
-      throw std::domain_error("{{ cookiecutter.repo_name }}::fileinterface_reader_gzip::open: could not "
+      throw std::domain_error("{{ cookiecutter.repo_name }}::finter_reader_gzip::open: could not "
 			      "open file \"" + std::string(filename) + "\"");
   } else
-    throw std::domain_error("{{ cookiecutter.repo_name }}::fileinterface_reader_gzip::open: reopen attempted "
+    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_reader_gzip::open: reopen attempted "
 			    "on active handle");
 }
 
-void {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::close() {
+void {{ cookiecutter.repo_name }}::finter_reader_gzip::close() {
   if (_gz_input) {
     gzclose(_gz_input);
     _gz_input = 0;
@@ -39,21 +39,21 @@ void {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::close() {
   clear();
 }
 
-void {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::clear() {
+void {{ cookiecutter.repo_name }}::finter_reader_gzip::clear() {
   _good = true;
   _bad = _fail = _eof = false;
 }
 
-bool {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::is_open() const {
+bool {{ cookiecutter.repo_name }}::finter_reader_gzip::is_open() const {
   return _gz_input;
 }
 
-char {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::get() {
+char {{ cookiecutter.repo_name }}::finter_reader_gzip::get() {
   read(_buf, 1);
   return _buf[0];
 }
 
-bool {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::getline(std::string &line) {
+bool {{ cookiecutter.repo_name }}::finter_reader_gzip::getline(std::string &line) {
   line = "";
   while (true) {
     if (gzgets(_gz_input, _buf, _buf_max) == Z_NULL) {
@@ -68,10 +68,10 @@ bool {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::getline(std::strin
   }
 }
 
-void {{ cookiecutter.repo_name }}::fileinterface_reader_gzip::read(char *buf, std::streamsize n) {
+void {{ cookiecutter.repo_name }}::finter_reader_gzip::read(char *buf, std::streamsize n) {
   int my_errno = 0;
   if ((my_errno = gzread(_gz_input, reinterpret_cast<void *>(buf), n)) < 0) {
-    throw std::domain_error("{{ cookiecutter.repo_name }}::fileinterface_reader_gzip::read: read call of"
+    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_reader_gzip::read: read call of"
 			    " size " + std::to_string(n) + " failed");
   } else if (!my_errno) {
     _eof = true;

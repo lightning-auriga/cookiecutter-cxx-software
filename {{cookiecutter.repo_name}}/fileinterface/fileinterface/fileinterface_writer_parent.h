@@ -1,34 +1,34 @@
 /*!
-  \file fileinterface_writer_parent.h
+  \file finter_writer_parent.h
   \brief virtual shared writer class declarations
   \copyright Released under the MIT License.
   Copyright 2020 Cameron Palmer
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_PARENT_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_PARENT_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_PARENT_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_PARENT_H_
 
 #include <string>
 #include <ios>
 
-#include "fileinterface/helper.h"
+#include "finter/helper.h"
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_writer
-    \brief parent class for all fileinterface writers
+    \class finter_writer
+    \brief parent class for all finter writers
    */
-  class fileinterface_writer {
+  class finter_writer {
   public:
     /*!
       \brief constructor
      */
-    fileinterface_writer()
+    finter_writer()
       : _good(true), _bad(false), _fail(false) {}
     /*!
       \brief virtual destructor
      */
-    virtual ~fileinterface_writer() throw() {}
+    virtual ~finter_writer() throw() {}
     /*!
       \brief open a file, converting name from string to char*
       @param filename name of file to open
@@ -95,4 +95,4 @@ namespace {{ cookiecutter.repo_name }} {
   };
 }
 
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_PARENT_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_PARENT_H_
