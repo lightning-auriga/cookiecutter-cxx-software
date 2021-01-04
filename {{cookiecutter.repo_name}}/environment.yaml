@@ -1,0 +1,23 @@
+name: {{ cookiecutter.repo_name }}-env
+dependencies:
+{%- if cookiecutter.require_boost_headers == "yes" %}
+  - boost
+{%- endif %}
+
+{%- if cookiecutter.require_yaml_cpp == "yes" %}
+  - yaml-cpp
+{%- endif %}
+
+{%- if cookiecutter.include_finter == "yes" %}
+  - zlib
+  - bzip2
+{%- endif %}
+
+{%- if cookiecutter.git_tracking == "yes" %}
+  - git
+{%- endif %}
+
+  - automake
+  - autoconf
+  - make>=4.2
+  - gxx_linux-64>=8.2.0
