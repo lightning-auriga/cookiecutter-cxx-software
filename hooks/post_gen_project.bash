@@ -38,7 +38,26 @@ cp m4/ax_check_zlib.m4 finter/m4
 {%- endif %}
 
 {%- if cookiecutter.git_tracking == "yes" %}
+
 git init -b default > /dev/null 2>&1
+git add -f {{ cookiecutter.repo_name }}/*cc \
+    {{ cookiecutter.repo_name }}/*h \
+    tap-driver.sh generate.bash environment.yaml \
+    configure.ac {{ cookiecutter.repo_name }}.doxyfile \
+    {{ cookiecutter.repo_name }}-{{ cookiecutter.version }}.pc.in \
+    m4/ax* m4/bzip2.m4 README README.md NEWS \
+    Makefile.am INSTALL ChangeLog COPYING AUTHORS \
+    .gitignore
+
+{%- if cookiecutter.include_finter %}
+git add -f finter/AUTHORS finter/ChangeLog \
+    finter/configure.ac finter/COPYING finter/finter-1.0.0.pc.in \
+    finter/INSTALL finter/m4/ax_* finter/m4/bzip2.m4 \
+    finter/Makefile.am finter/NEWS finter/README \
+    finter/finter/finter*h finter/finter/helper.h \
+    finter/finter/finter*cc
+{%- endif %}
+
 {%- else %}
 rm .gitignore
 {%- endif %}
