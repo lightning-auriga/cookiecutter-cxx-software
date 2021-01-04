@@ -18,7 +18,8 @@ development updates.
   - make >= 4.2
 
 {%- if cookiecutter.git_tracking == "yes" %}
-  - git>=2.28.0
+  - git >= 2.28.0
+  - nodejs (for commitizen)
 {%- endif %}
 
 {%- if cookiecutter.require_boost_headers == "yes" %}
@@ -55,6 +56,8 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      `conda env create -f {{ cookiecutter.repo_name }}/environment.yaml`
   - activate the conda environment:
      `conda activate {{ cookiecutter.repo_name }}-env`
+  - (one time only per environment) install commitizen
+     `npm install -g commitizen cz-conventional-changelog`
   - update (create) the necessary `configure` scripts with `autoreconf`:
      `autoreconf --force --install`
      - note that this can also be run with `./generate.bash` inside the repo
