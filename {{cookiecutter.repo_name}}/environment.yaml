@@ -15,7 +15,15 @@ dependencies:
 
 {%- if cookiecutter.git_tracking == "yes" %}
   - git
+# required for commitizen
+  - nodejs
 {%- endif %}
+
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
+  - pre-commit
+  - cppcheck
+  - sarcasm::clang-format
+{% endif %}
 
   - automake
   - autoconf
