@@ -39,6 +39,6 @@ Installation is supported for `conda`; this is certainly not required, and if yo
 
 ## Version History
 
-04 January 2021: actual v1.0.0 release lol
+04 January 2021: v1.1.0 release: linting and commitizen added
 
-30 December 2020: somewhat ambitiously declaring the v1.0.0 release is happening today?
+30 December 2020: initial development
