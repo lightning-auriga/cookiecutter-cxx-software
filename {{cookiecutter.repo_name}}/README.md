@@ -22,7 +22,7 @@ development updates.
   - nodejs (for commitizen)
 {%- endif %}
 
-{%- if cookiecutter.linting_support_for_CXX %}
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
   - pre-commit
   - associated linting tools for C++: cppcheck, clang-format
 {%- endif %}
@@ -68,7 +68,7 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      `npm install -g commitizen cz-conventional-changelog`
 {%- endif %}
 
-{%- if cookiecutter.linting_support_for_CXX %}
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
   - (one time only per environment) install `pre-commit` linters
      `pre-commit install`
 {%- endif %}
