@@ -57,8 +57,9 @@ development updates.
 By default, a build process involving a [conda](https://docs.conda.io/en/latest/) environment is supported.
 
   - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://docs.conda.io/en/latest/miniconda.html)
+  - navigate into your project directory ({{ cookiecutter.repo_name }})
   - create the `conda` environment for installation as follows:
-     `conda env create -f {{ cookiecutter.repo_name }}/environment.yaml`
+     `conda env create -f environment.yaml`
   - activate the conda environment:
      `conda activate {{ cookiecutter.repo_name }}-env`
 
