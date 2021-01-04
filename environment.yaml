@@ -1,3 +1,5 @@
 name: cookiecutter-cxx-software-env
 dependencies:
   - cookiecutter
+  - git
+
