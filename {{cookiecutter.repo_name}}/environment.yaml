@@ -19,6 +19,12 @@ dependencies:
   - nodejs
 {%- endif %}
 
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
+  - pre-commit
+  - cppcheck
+  - sarcasm::clang-format
+{% endif %}
+
   - automake
   - autoconf
   - make>=4.2
