@@ -56,8 +56,10 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      `conda env create -f {{ cookiecutter.repo_name }}/environment.yaml`
   - activate the conda environment:
      `conda activate {{ cookiecutter.repo_name }}-env`
+{%- if cookiecutter.git_tracking == "yes" %}
   - (one time only per environment) install commitizen
      `npm install -g commitizen cz-conventional-changelog`
+{%- endif %}
   - update (create) the necessary `configure` scripts with `autoreconf`:
      `autoreconf --force --install`
      - note that this can also be run with `./generate.bash` inside the repo
