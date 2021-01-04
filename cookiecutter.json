@@ -15,5 +15,6 @@
     "require_yaml_cpp": ["yes", "no"],
     "include_finter": ["yes", "no"],
     "git_tracking": ["yes", "no"],
+    "linting_support_for_CXX": ["yes", "no"],
     "_copy_without_render": ["*.m4"]
 }
