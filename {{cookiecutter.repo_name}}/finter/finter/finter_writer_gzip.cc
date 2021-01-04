@@ -13,11 +13,15 @@ void {{ cookiecutter.repo_name }}::finter_writer_gzip::open(const char *filename
   if (!_gz_output) {
     _gz_output = gzopen(filename, "wb");
     if (!_gz_output)
-      throw std::domain_error("{{ cookiecutter.repo_name }}::finter_writer_gzip::open: cannot open "
-			      "file \"" + std::string(filename) + "\"");
-  } else
-    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_writer_gzip::open: reopen "
-			    "attempted with active handle");
+      throw std::domain_error(
+          "{{ cookiecutter.repo_name }}::finter_writer_gzip::open: cannot open "
+          "file \"" +
+          std::string(filename) + "\"");
+  } else {
+    throw std::domain_error(
+        "{{ cookiecutter.repo_name }}::finter_writer_gzip::open: reopen "
+        "attempted with active handle");
+  }
 }
 
 void {{ cookiecutter.repo_name }}::finter_writer_gzip::close() {
@@ -37,23 +41,26 @@ bool {{ cookiecutter.repo_name }}::finter_writer_gzip::is_open() const {
   return _gz_output;
 }
 
-void {{ cookiecutter.repo_name }}::finter_writer_gzip::put(char c) {
-  write(&c, 1);
-}
+void {{ cookiecutter.repo_name }}::finter_writer_gzip::put(char c) { write(&c, 1); }
 
-void {{ cookiecutter.repo_name }}::finter_writer_gzip::writeline(const std::string &linemod) {
+void {{ cookiecutter.repo_name }}::finter_writer_gzip::writeline(
+    const std::string &linemod) {
   std::string line = linemod + get_newline();
   if (gzputs(_gz_output, line.c_str()) < 0)
-    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_writer_gzip::writeline: write of "
-			    "line \"" + line + "\" failed");
-
+    throw std::domain_error(
+        "{{ cookiecutter.repo_name }}::finter_writer_gzip::writeline: write of "
+        "line \"" +
+        line + "\" failed");
 }
 
-void {{ cookiecutter.repo_name }}::finter_writer_gzip::write(char *buf, std::streamsize n) {
+void {{ cookiecutter.repo_name }}::finter_writer_gzip::write(char *buf,
+                                                         std::streamsize n) {
   if (gzwrite(_gz_output, reinterpret_cast<void *>(buf), n) < 1) {
-    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_writer_gzip::write: write call of"
-			    " size " + std::to_string(n) + " failed");
+    throw std::domain_error(
+        "{{ cookiecutter.repo_name }}::finter_writer_gzip::write: write call of"
+        " size " +
+        std::to_string(n) + " failed");
   }
 }
 
-#endif //FINTER_HAVE_LIBZ
+#endif  // FINTER_HAVE_LIBZ
