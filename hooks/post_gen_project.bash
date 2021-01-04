@@ -67,4 +67,8 @@ rm tap-driver.sh
 rm -Rf tests
 {%- endif %}
 
+{%- if cookiecutter.linting_support_for_CXX == "no" %}
+rm .pre-commit-config.yaml
+{%- endif %}
+
 exit 0
