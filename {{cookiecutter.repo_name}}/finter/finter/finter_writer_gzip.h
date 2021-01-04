@@ -1,41 +1,43 @@
 /*!
-  \file fileinterface_writer_bzip2.h
-  \brief bzip2-specific writer class definitions
+  \file finter_writer_gzip.h
+  \brief gzip-specific writer class definitions
   \copyright Released under the MIT License.
   Copyright 2020 Lightning Auriga
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_BZIP2_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_BZIP2_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_GZIP_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_GZIP_H_
 
-#include "fileinterface/config.h"
-#ifdef FILEINTERFACE_HAVE_LIBBZ2
-
-#include "fileinterface/fileinterface_writer_parent.h"
+#include "finter/config.h"
+#ifdef FINTER_HAVE_LIBZ
+#include "finter/finter_writer_parent.h"
 
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
 #include <cstdio>
-#include <bzlib.h>
+#include <zlib.h>
+
+#include "finter/helper.h"
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_writer_bzip2
-    \brief interface for bzip2 file output that doesn't break my brain
+    \class finter_writer_gzip
+    \brief interface for zlib (gzip) file output that doesn't break my brain
    */
-  class fileinterface_writer_bzip2 : public fileinterface_writer {
+  class finter_writer_gzip : public finter_writer {
   public:
     /*!
       \brief constructor
      */
-    fileinterface_writer_bzip2()
-      : fileinterface_writer(),
-      _raw_output(0), _bz_output(0) {}
+    finter_writer_gzip()
+      : finter_writer(),
+      _eof(false), 
+      _gz_output(0) {}
     /*!
       \brief destructor
      */
-    ~fileinterface_writer_bzip2() throw() {close();}
+    ~finter_writer_gzip() throw() {close();}
     /*!
       \brief open a file
       @param filename name of file to open
@@ -91,12 +93,11 @@ namespace {{ cookiecutter.repo_name }} {
      */
     bool bad() const {return _bad;}
   private:
-    FILE *_raw_output; //!< C-style file handle used by bz2 library
-    BZFILE *_bz_output; //!< bz2 library interface to underlying file pointer
+    bool _eof; //!< internal state flag: whether end of file has been reached
+    gzFile _gz_output; //!< zlib library interface for file input
   };
 }
 
+#endif //HAVE_LIBZ
 
-#endif //FILEINTERFACE_HAVE_LIBBZ2
-
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_WRITER_BZIP2_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_WRITER_GZIP_H_

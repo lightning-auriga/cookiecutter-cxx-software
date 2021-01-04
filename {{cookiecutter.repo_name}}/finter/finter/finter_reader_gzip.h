@@ -1,42 +1,42 @@
 /*!
-  \file fileinterface_reader_gzip.h
+  \file finter_reader_gzip.h
   \brief gzip-specific reader class definitions
   \copyright Released under the MIT License.
   Copyright 2020 Lightning Auriga
  */
 
-#ifndef {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_GZIP_H_
-#define {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_GZIP_H_
+#ifndef {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_GZIP_H_
+#define {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_GZIP_H_
 
-#include "fileinterface/config.h"
-#ifdef FILEINTERFACE_HAVE_LIBZ
-#include "fileinterface/fileinterface_reader_parent.h"
+#include "finter/config.h"
+#ifdef FINTER_HAVE_LIBZ
+#include "finter/finter_reader_parent.h"
 
 #include <string>
 #include <stdexcept>
 #include <cstdio>
 #include <zlib.h>
 
-#include "fileinterface/helper.h"
+#include "finter/helper.h"
 
 namespace {{ cookiecutter.repo_name }} {
   /*!
-    \class fileinterface_reader_gzip
+    \class finter_reader_gzip
     \brief interface for zlib (gzip) file input that doesn't break my brain
    */
-  class fileinterface_reader_gzip : public fileinterface_reader {
+  class finter_reader_gzip : public finter_reader {
   public:
     /*!
       \brief constructor
      */
-    fileinterface_reader_gzip();
+    finter_reader_gzip();
     /*!
       \brief destructor
 
       This cleanly handles memory allocation problems, so it's safe to just delete
       the allocated object in userspace.
      */
-    ~fileinterface_reader_gzip() throw() {close(); delete [] _buf;}
+    ~finter_reader_gzip() throw() {close(); delete [] _buf;}
     /*!
       \brief open a specified file
       @param filename name of file to open
@@ -98,4 +98,4 @@ namespace {{ cookiecutter.repo_name }} {
 
 #endif //HAVE_LIBZ
 
-#endif // {{ cookiecutter.repo_capitalized }}_FILEINTERFACE_FILEINTERFACE_READER_GZIP_H_
+#endif // {{ cookiecutter.repo_capitalized }}_FINTER_FINTER_READER_GZIP_H_
