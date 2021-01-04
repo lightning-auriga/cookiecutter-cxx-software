@@ -15,18 +15,22 @@
 void {{ cookiecutter.repo_name }}::finter_reader_flat::open(const char *filename) {
   _input.open(filename);
   if (!_input.is_open())
-    throw std::domain_error("{{ cookiecutter.repo_name }}::finter_reader_flat::open: cannot open file \""
-			    + std::string(filename) + "\"");
+    throw std::domain_error(
+        "{{ cookiecutter.repo_name }}::finter_reader_flat::open: cannot open file "
+        "\"" +
+        std::string(filename) + "\"");
 }
 
-bool {{ cookiecutter.repo_name }}::finter_reader_flat::getline(std::string &line) {
-  line = "";
-  if (_input.peek() == EOF)
-    return false;
-  std::getline(_input, line);
+bool {{ cookiecutter.repo_name }}::finter_reader_flat::getline(std::string *line) {
+  if (!line)
+    throw std::runtime_error("flat_reader::getline: null pointer");
+  *line = "";
+  if (_input.peek() == EOF) return false;
+  std::getline(_input, *line);
   return true;
 }
 
-void {{ cookiecutter.repo_name }}::finter_reader_flat::read(char *buf, std::streamsize n) {
+void {{ cookiecutter.repo_name }}::finter_reader_flat::read(char *buf,
+                                                        std::streamsize n) {
   _input.read(buf, n);
 }
