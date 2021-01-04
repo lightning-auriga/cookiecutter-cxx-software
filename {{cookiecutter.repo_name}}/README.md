@@ -18,7 +18,13 @@ development updates.
   - make >= 4.2
 
 {%- if cookiecutter.git_tracking == "yes" %}
-  - git>=2.28.0
+  - git >= 2.28.0
+  - nodejs (for commitizen)
+{%- endif %}
+
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
+  - pre-commit
+  - associated linting tools for C++: cppcheck, clang-format
 {%- endif %}
 
 {%- if cookiecutter.require_boost_headers == "yes" %}
@@ -51,10 +57,22 @@ development updates.
 By default, a build process involving a [conda](https://docs.conda.io/en/latest/) environment is supported.
 
   - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://docs.conda.io/en/latest/miniconda.html)
+  - navigate into your project directory ({{ cookiecutter.repo_name }})
   - create the `conda` environment for installation as follows:
-     `conda env create -f {{ cookiecutter.repo_name }}/environment.yaml`
+     `conda env create -f environment.yaml`
   - activate the conda environment:
      `conda activate {{ cookiecutter.repo_name }}-env`
+
+{%- if cookiecutter.git_tracking == "yes" %}
+  - (one time only per environment) install `commitizen`
+     `npm install -g commitizen cz-conventional-changelog`
+{%- endif %}
+
+{%- if cookiecutter.linting_support_for_CXX == "yes" %}
+  - (one time only per environment) install `pre-commit` linters
+     `pre-commit install`
+{%- endif %}
+
   - update (create) the necessary `configure` scripts with `autoreconf`:
      `autoreconf --force --install`
      - note that this can also be run with `./generate.bash` inside the repo
