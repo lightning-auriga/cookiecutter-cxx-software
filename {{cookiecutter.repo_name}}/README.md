@@ -22,6 +22,11 @@ development updates.
   - nodejs (for commitizen)
 {%- endif %}
 
+{%- if cookiecutter.linting_support_for_CXX %}
+  - pre-commit
+  - associated linting tools for C++: cppcheck, clang-format
+{%- endif %}
+
 {%- if cookiecutter.require_boost_headers == "yes" %}
   - [boost headers](https://www.boost.org)
 {%- endif %}
@@ -56,10 +61,17 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      `conda env create -f {{ cookiecutter.repo_name }}/environment.yaml`
   - activate the conda environment:
      `conda activate {{ cookiecutter.repo_name }}-env`
+
 {%- if cookiecutter.git_tracking == "yes" %}
-  - (one time only per environment) install commitizen
+  - (one time only per environment) install `commitizen`
      `npm install -g commitizen cz-conventional-changelog`
 {%- endif %}
+
+{%- if cookiecutter.linting_support_for_CXX %}
+  - (one time only per environment) install `pre-commit` linters
+     `pre-commit install`
+{%- endif}
+
   - update (create) the necessary `configure` scripts with `autoreconf`:
      `autoreconf --force --install`
      - note that this can also be run with `./generate.bash` inside the repo
