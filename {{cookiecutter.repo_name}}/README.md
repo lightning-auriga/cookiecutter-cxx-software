@@ -59,25 +59,33 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
   - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://docs.conda.io/en/latest/miniconda.html)
   - navigate into your project directory ({{ cookiecutter.repo_name }})
   - create the `conda` environment for installation as follows:
+  
      `conda env create -f environment.yaml`
   - activate the conda environment:
+  
      `conda activate {{ cookiecutter.repo_name }}-env`
 
 {%- if cookiecutter.git_tracking == "yes" %}
-  - (one time only per environment) install `commitizen`
+  - (one time only per environment) install `commitizen`:
+  
      `npm install -g commitizen cz-conventional-changelog`
 {%- endif %}
 
 {%- if cookiecutter.linting_support_for_CXX == "yes" %}
-  - (one time only per environment) install `pre-commit` linters
+  - (one time only per environment) install `pre-commit` linters:
+  
      `pre-commit install`
 {%- endif %}
 
   - update (create) the necessary `configure` scripts with `autoreconf`:
+  
      `autoreconf --force --install`
+	 
      - note that this can also be run with `./generate.bash` inside the repo
   - run `configure`:
+  
 	 `./configure --with-boost=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env --with-boost-libdir=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env/lib`
+
 	 - if you are planning on installing software to a local directory, run instead `./configure --prefix=/install/dir [...]`
 	 - periodically there are some incompatibility issues between `configure` and `conda`. if so, you may need to override
 	   some default locations detected by `configure`. for example, you might override the detected compiler with:
