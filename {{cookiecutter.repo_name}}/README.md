@@ -59,19 +59,27 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      `autoreconf --force --install`
      - note that this can also be run with `./generate.bash` inside the repo
   - run `configure`:
-	 `./configure`
-	 - if you are planning on installing software to a local directory, run instead `./configure --prefix=/install/dir`
+	 `./configure --with-boost=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env --with-boost-libdir=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env/lib`
+	 - if you are planning on installing software to a local directory, run instead `./configure --prefix=/install/dir [...]`
 	 - periodically there are some incompatibility issues between `configure` and `conda`. if so, you may need to override
-	   some default locations detected by `configure`. for example, you might override the detected compiler and boost locations
-	   with a command such as:
-	   `CC=gcc CXX=g++ ./configure --with-boost=/local/install/stage --with-boost-libdir=/local/install/stage/lib`
-  - run `make`
+	   some default locations detected by `configure`. for example, you might override the detected compiler with:
+	   `CC=gcc CXX=g++ ./configure [...]`
+  - run `make CPPFLAGS=""`
+	 - this is a non-standard `make` invocation. the reason this is included is because the project
+	   is configured to specifically use a `boost` installation in the accompanying `conda` environment.
+	   if you'd rather remove `boost` from the conda environment, or ignore it in favor of a system-wide
+	   `boost` installation, you can adjust the appropriate `configure` parameters accordingly
+	   and instead invoke `make` without any further variable overrides
   
 {%- if cookiecutter.testing_with_TAP == "yes" %}
   - run `make check` to run any `TAP/automake` tests, or the placeholder
+     - if you run this directory without compiling first, you will again need to override `CPPFLAGS`
+	   as follows: `make CPPFLAGS="" check`
 {%- endif %}
 
   - if desired, run `make install`. if permissions issues are reported, see above for reconfiguring with `./configure --prefix`.
+     - as above, if you run installation without compiling first, you will again need to override `CPPFLAGS`
+	   as follows: `make CPPFLAGS="" check`
   
 ## Usage
 
