@@ -70,7 +70,7 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
 {%- if cookiecutter.linting_support_for_CXX %}
   - (one time only per environment) install `pre-commit` linters
      `pre-commit install`
-{%- endif}
+{%- endif %}
 
   - update (create) the necessary `configure` scripts with `autoreconf`:
      `autoreconf --force --install`
