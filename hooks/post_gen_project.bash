@@ -39,6 +39,8 @@ cp m4/ax_check_zlib.m4 finter/m4
 
 {%- if cookiecutter.git_tracking == "yes" %}
 
+npm install -g commitizen cz-conventional-changelog
+
 git init -b default > /dev/null 2>&1
 git add -f {{ cookiecutter.repo_name }}/*cc \
     {{ cookiecutter.repo_name }}/*h \
