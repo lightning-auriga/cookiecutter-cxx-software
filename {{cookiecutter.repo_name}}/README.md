@@ -99,7 +99,7 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
   
 {%- if cookiecutter.testing_with_TAP == "yes" %}
   - run `make check` to run any `TAP/automake` tests, or the placeholder
-     - if you run this directory without compiling first, you will again need to override `CPPFLAGS`
+     - if you run this command without compiling first, you will again need to override `CPPFLAGS`
 	   as follows: `make CPPFLAGS="" check`
 {%- endif %}
 
