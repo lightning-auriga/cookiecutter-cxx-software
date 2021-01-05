@@ -182,8 +182,9 @@ void {{ cookiecutter.repo_name }}::finter_reader_bzip2::refresh_buffer() {
           "read called on stream opened as write");
     }
     _buf_remaining = _buf_read = static_cast<unsigned>(num_read);
-  } else
+  } else {
     _fail = true;
+  }
 }
 
 #endif  // HAVE_LIBBZ2
