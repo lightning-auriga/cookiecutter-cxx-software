@@ -2,8 +2,8 @@
 
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template for an autotools-powered C++ software package with certain add-ons.
 
- - gitlab repo: http://10.133.130.114/palmercd/cookiecutter-cxx-software
- - released tentatively under the MIT License
+ - GitHub repo: https://github.com/NCI-CGR/cookiecutter-cxx-software
+ - released under the MIT License
  
 ## Features
 
@@ -24,7 +24,7 @@ Installation is supported for `conda`; this is certainly not required, and if yo
 
   - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://docs.conda.io/en/latest/miniconda.html)
   - get a copy of the template repository (if you don't have `git` available, you can download it in your browser and unpack the tarball wherever you want it):
-	 `git clone --branch default http://10.133.130.114/palmercd/cookiecutter-cxx-software`
+	 `git clone --branch default https://github.com/NCI-CGR/cookiecutter-cxx-software`
   - create the `conda` environment for installation as follows:
      `conda env create -f cookiecutter-cxx-software/environment.yaml`
   - activate the conda environment:
@@ -38,6 +38,8 @@ Installation is supported for `conda`; this is certainly not required, and if yo
   - if, like me, you sometimes have issues with `conda` taking an absurdly long time to resolve environments and dependencies, you can try using `mamba` instead. you would proceed as above installing `conda`, but then use `conda install mamba` to install `mamba` into your base environment. then you can instead use `mamba env create -f cookiecutter-cxx-software/environment.yaml` above.
 
 ## Version History
+
+05 January 2021: ported to GitHub: hello world!
 
 04 January 2021: v1.1.0 release: linting and commitizen added
 
