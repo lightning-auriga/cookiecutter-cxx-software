@@ -32,7 +32,7 @@ AC_PROG_CXX_C_O
 #	    [AX_PTHREAD]) #([CFLAGS=$CFLAGS $PTHREAD_CFLAGS])
 #fi
 
-#AX_CXX_COMPILE_STDCXX_11([ext], [optional])
+AX_CXX_COMPILE_STDCXX_17([ext], [mandatory])
 
 # Checks for libraries.
 
