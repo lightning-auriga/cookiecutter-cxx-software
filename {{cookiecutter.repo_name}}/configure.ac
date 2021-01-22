@@ -52,14 +52,6 @@ AX_BOOST_PROGRAM_OPTIONS
 AX_BOOST_IOSTREAMS
 {%- endif %}
 
-{%- if cookiecutter.include_finter == "yes" %}
-AX_CHECK_ZLIB
-{%- endif %}
-
-{%- if cookiecutter.include_finter == "yes" %}
-AX_CHECK_BZIP2
-{%- endif %}
-
 AC_CHECK_LIB([m],[cos])
 
 # Checks for header files.
