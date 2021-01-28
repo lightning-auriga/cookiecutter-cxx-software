@@ -7,8 +7,6 @@
 
 #include "finter/finter_writer_bzip2.h"
 
-#ifdef FINTER_HAVE_LIBBZ2
-
 void {{ cookiecutter.repo_name }}::finter_writer_bzip2::open(const char *filename) {
   if (_raw_output)
     throw std::domain_error(
@@ -100,5 +98,3 @@ void {{ cookiecutter.repo_name }}::finter_writer_bzip2::write(char *buf,
         "write operation called on read handle");
   }
 }
-
-#endif  // HAVE_LIBBZ2
