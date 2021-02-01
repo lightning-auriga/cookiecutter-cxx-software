@@ -65,8 +65,4 @@ AC_CONFIG_FILES([
  {{ cookiecutter.repo_name }}-{{ cookiecutter.version }}.pc
 ])
 
-{%- if cookiecutter.include_finter == "yes" %}
-AC_CONFIG_SUBDIRS([finter])
-{%- endif %}
-
 AC_OUTPUT

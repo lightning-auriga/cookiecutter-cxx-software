@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-{%- if cookiecutter.include_finter != "yes" %}
-rm -Rf finter
-{%- endif %}
-
 autoconf_archive_github="https://raw.githubusercontent.com/autoconf-archive/autoconf-archive/master/m4"
 
 function download_file {
@@ -54,15 +50,6 @@ git add -f tap-driver.sh
 
 {%- if cookiecutter.linting_support_for_CXX == "yes" %}
 git add -f .pre-commit-config.yaml
-{%- endif %}
-
-{%- if cookiecutter.include_finter  == "yes" %}
-git add -f finter/AUTHORS finter/ChangeLog \
-    finter/configure.ac finter/COPYING finter/finter-1.0.0.pc.in \
-    finter/INSTALL finter/m4/ax_* \
-    finter/Makefile.am finter/NEWS finter/README \
-    finter/finter/finter*h finter/finter/helper.h \
-    finter/finter/finter*cc
 {%- endif %}
 
 {%- else %}
