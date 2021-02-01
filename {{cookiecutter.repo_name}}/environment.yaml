@@ -9,6 +9,7 @@ dependencies:
 {%- endif %}
 
 {%- if cookiecutter.include_finter == "yes" %}
+  - finter
   - zlib
   - bzip2
 {%- endif %}
