@@ -25,6 +25,7 @@ dependencies:
   - sarcasm::clang-format
 {% endif %}
 
+  - libtool
   - automake
   - autoconf
   - make>=4.2
