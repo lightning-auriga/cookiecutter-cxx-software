@@ -36,7 +36,7 @@ git add -f {{ cookiecutter.repo_name }}/* \
     configure.ac {{ cookiecutter.repo_name }}.doxyfile \
     {{ cookiecutter.repo_name }}-{{ cookiecutter.version }}.pc.in \
     m4/ax* README README.md NEWS \
-    Makefile.am INSTALL ChangeLog COPYING AUTHORS \
+    Makefile.am INSTALL ChangeLog ChangeLog.md COPYING AUTHORS \
     .gitignore
 
 {%- if cookiecutter.testing_with_TAP == "yes" %}
