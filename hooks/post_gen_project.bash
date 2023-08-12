@@ -28,6 +28,10 @@ download_file "ax_boost_program_options.m4" "m4"
 rm {{ cookiecutter.repo_name }}/cargs.*
 {%- endif %}
 
+{%- if cookiecutter.require_boost_unit_test_framework == "no" %}
+rm -Rf unit_tests
+{%- endif %}
+
 {%- if cookiecutter.git_tracking == "yes" %}
 
 git init -b default > /dev/null 2>&1
@@ -45,6 +49,10 @@ git add -f tap-driver.sh
 
 {%- if cookiecutter.linting_support_for_CXX == "yes" %}
 git add -f .pre-commit-config.yaml
+{%- endif %}
+
+{%- if cookiecutter.require_boost_unit_test_framework == "yes" %}
+git add -f unit_tests
 {%- endif %}
 
 {%- else %}

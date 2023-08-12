@@ -12,6 +12,7 @@
     "require_boost_program_options": ["yes", "no"],
     "require_boost_filesystem": ["yes", "no"],
     "require_boost_iostreams": ["yes", "no"],
+    "require_boost_unit_test_framework": ["yes", "no"],
     "require_yaml_cpp": ["yes", "no"],
     "git_tracking": ["yes", "no"],
     "linting_support_for_CXX": ["yes", "no"],

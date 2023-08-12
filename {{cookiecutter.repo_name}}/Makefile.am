@@ -1,9 +1,19 @@
-bin_PROGRAMS = {{ cookiecutter.repo_name }}.out
+bin_PROGRAMS = {{ cookiecutter.repo_name }}.out {%- if cookiecutter.require_boost_unit_test_framework == "yes" %} test_suite.out {%- endif %}
 
 AM_CXXFLAGS = {%- if cookiecutter.require_boost_headers == "yes" %} $(BOOST_CPPFLAGS) {%- endif %} -ggdb -Wall -std=c++17
 
-{{ cookiecutter.repo_name }}_out_SOURCES = {%- if cookiecutter.require_boost_program_options == "yes" %} {{ cookiecutter.repo_name }}/cargs.cc {{ cookiecutter.repo_name }}/cargs.h {%- endif %} {{ cookiecutter.repo_name }}/main.cc
-{{ cookiecutter.repo_name }}_out_LDADD = {%- if cookiecutter.require_boost_headers == "yes" %} $(BOOST_LDFLAGS) {%- endif %} {%- if cookiecutter.require_boost_program_options == "yes" %} -lboost_program_options {%- endif %} {%- if cookiecutter.require_boost_filesystem == "yes" %} -lboost_system -lboost_filesystem {%- endif %} {%- if cookiecutter.require_boost_iostreams == "yes" %} -lboost_iostreams {%- endif %} {%- if cookiecutter.require_yaml_cpp == "yes" %} -lyaml-cpp {%- endif %}
+COMBINED_SOURCES = {%- if cookiecutter.require_boost_program_options == "yes" %} {{ cookiecutter.repo_name }}/cargs.cc {{ cookiecutter.repo_name }}/cargs.h {%- endif %} 
+COMBINED_LDADD = {%- if cookiecutter.require_boost_headers == "yes" %} $(BOOST_LDFLAGS) {%- endif %} {%- if cookiecutter.require_boost_program_options == "yes" %} -lboost_program_options {%- endif %} {%- if cookiecutter.require_boost_filesystem == "yes" %} -lboost_system -lboost_filesystem {%- endif %} {%- if cookiecutter.require_boost_iostreams == "yes" %} -lboost_iostreams {%- endif %} {%- if cookiecutter.require_yaml_cpp == "yes" %} -lyaml-cpp {%- endif %}
+
+{{ cookiecutter.repo_name }}_out_SOURCES = {{ cookiecutter.repo_name }}/main.cc $(COMBINED_SOURCES)
+{{ cookiecutter.repo_name }}_out_LDADD = $(COMBINED_LDADD)
+
+{%- if cookiecutter.require_boost_unit_test_framework == "yes" %}
+UNIT_TEST_SOURCES = unit_tests/main.cc unit_tests/example_test.cc
+test_suite_out_SOURCES = $(COMBINED_SOURCES) $(UNIT_TEST_SOURCES)
+test_suite_out_LDADD = $(COMBINED_LDADD) -lboost_unit_test_framework
+{%- endif %}
+
 dist_doc_DATA = README
 ACLOCAL_AMFLAGS = -I m4
 {%- if cookiecutter.testing_with_TAP == "yes" %}
