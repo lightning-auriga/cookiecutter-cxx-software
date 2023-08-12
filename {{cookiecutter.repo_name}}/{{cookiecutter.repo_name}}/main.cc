@@ -21,10 +21,6 @@
 #include "{{ cookiecutter.repo_name }}/cargs.h"
 {%- endif %}
 
-{%- if cookiecutter.include_finter == "yes" %}
-#include "finter/finter.h"
-{%- endif %}
-
 /*!
   \brief main program implementation
   @param argc number of command line entries, including program name

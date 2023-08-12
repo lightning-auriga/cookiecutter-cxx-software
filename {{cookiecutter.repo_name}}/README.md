@@ -47,23 +47,18 @@ development updates.
   - [yaml-cpp](https://github.com/jbeder/yaml-cpp)
 {%- endif %}
 
-{%- if cookiecutter.include_finter == "yes" %}
-  - [zlib headers and library](https://zlib.net/)
-  - [bzip2 headers and library](https://www.sourceware.org/bzip2/)
-{%- endif %}
-
 ## Build
 
-By default, a build process involving a [conda](https://docs.conda.io/en/latest/) environment is supported.
+By default, a build process involving a [conda/mamba](https://mamba.readthedocs.io/en/latest/installation.html) environment is supported.
 
-  - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://docs.conda.io/en/latest/miniconda.html)
+  - if you wish to use `conda` and it's not currently available, you can install it with the instructions [here](https://mamba.readthedocs.io/en/latest/mamba-installation.html#mamba-install)
   - navigate into your project directory ({{ cookiecutter.repo_name }})
   - create the `conda` environment for installation as follows:
   
-     `conda env create -f environment.yaml`
+     `mamba env create -f environment.yaml`
   - activate the conda environment:
   
-     `conda activate {{ cookiecutter.repo_name }}-env`
+     `mamba activate {{ cookiecutter.repo_name }}-env`
 
 {%- if cookiecutter.git_tracking == "yes" %}
   - (one time only per environment) install `commitizen`:
@@ -84,28 +79,16 @@ By default, a build process involving a [conda](https://docs.conda.io/en/latest/
      - note that this can also be run with `./generate.bash` inside the repo
   - run `configure`:
   
-	 `./configure --with-boost=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env --with-boost-libdir=/path/to/miniconda3/envs/{{ cookiecutter.repo_name }}-env/lib`
+	 `CC=${CONDA_PREFIX}/bin/x86_64-conda-linux-gnu-gcc CXX=${CONDA_PREFIX}/bin/x86_64-conda-linux-gnu-g++ ./configure {%- if cookiecutter.require_boost_headers == "yes"%} --with-boost=${CONDA_PREFIX} --with-boost-libdir=${CONDA_PREFIX}/lib {%- endif %} {%- if cookiecutter.require_yaml_cpp %} --with-yaml-cpp=${CONDA_PREFIX} {%- endif %}`
 
 	 - if you are planning on installing software to a local directory, run instead `./configure --prefix=/install/dir [...]`
-	 - periodically there are some incompatibility issues between `configure` and `conda`. if so, you may need to override
-	   some default locations detected by `configure`. for example, you might override the detected compiler with:
-	   `CC=gcc CXX=g++ ./configure [...]`
-  - run `make CPPFLAGS=""`
-	 - this is a non-standard `make` invocation. the reason this is included is because the project
-	   is configured to specifically use a `boost` installation in the accompanying `conda` environment.
-	   if you'd rather remove `boost` from the conda environment, or ignore it in favor of a system-wide
-	   `boost` installation, you can adjust the appropriate `configure` parameters accordingly
-	   and instead invoke `make` without any further variable overrides
+  - run `make -j{ncores}`
   
 {%- if cookiecutter.testing_with_TAP == "yes" %}
   - run `make check` to run any `TAP/automake` tests, or the placeholder
-     - if you run this command without compiling first, you will again need to override `CPPFLAGS`
-	   as follows: `make CPPFLAGS="" check`
 {%- endif %}
 
   - if desired, run `make install`. if permissions issues are reported, see above for reconfiguring with `./configure --prefix`.
-     - as above, if you run installation without compiling first, you will again need to override `CPPFLAGS`
-	   as follows: `make CPPFLAGS="" check`
   
 ## Usage
 

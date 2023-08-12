@@ -8,12 +8,6 @@ dependencies:
   - yaml-cpp
 {%- endif %}
 
-{%- if cookiecutter.include_finter == "yes" %}
-  - finter
-  - zlib
-  - bzip2
-{%- endif %}
-
 {%- if cookiecutter.git_tracking == "yes" %}
   - git
 # required for commitizen

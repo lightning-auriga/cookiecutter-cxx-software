@@ -2,7 +2,7 @@
   \file cargs.cc
   \brief method implementation for command line argument parser class
   \copyright Released under the MIT License.
-  Copyright 2021 Lightning Auriga
+  Copyright {% now 'utc', '%Y' %} {{ cookiecutter.full_name }}
 */
 
 #include "{{ cookiecutter.repo_name }}/cargs.h"

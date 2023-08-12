@@ -1,7 +1,7 @@
 {
     "full_name": "Lightning Auriga",
     "email": "lightning.auriga@gmail.com",
-    "username": "palmercd",
+    "username": "lightning-auriga",
     "project_name": "Empty C++ Project",
     "repo_name": "empty_cxx_project",
     "repo_capitalized": "{{ cookiecutter.repo_name.upper() }}",
@@ -13,7 +13,6 @@
     "require_boost_filesystem": ["yes", "no"],
     "require_boost_iostreams": ["yes", "no"],
     "require_yaml_cpp": ["yes", "no"],
-    "include_finter": ["yes", "no"],
     "git_tracking": ["yes", "no"],
     "linting_support_for_CXX": ["yes", "no"],
     "_copy_without_render": ["*.m4"]

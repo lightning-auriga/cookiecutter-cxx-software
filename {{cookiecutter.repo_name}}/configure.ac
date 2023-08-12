@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.71])
 AC_INIT({{ cookiecutter.repo_name }}, {{ cookiecutter.version }}, {{ cookiecutter.email }})
 AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
@@ -50,6 +50,10 @@ AX_BOOST_PROGRAM_OPTIONS
 
 {%- if cookiecutter.require_boost_iostreams == "yes" %}
 AX_BOOST_IOSTREAMS
+{%- endif %}
+
+{%- if cookiecutter.require_yaml_cpp == "yes" %}
+AX_CHECK_YAML_CPP
 {%- endif %}
 
 AC_CHECK_LIB([m],[cos])
