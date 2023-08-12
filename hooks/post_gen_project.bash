@@ -28,11 +28,6 @@ download_file "ax_boost_program_options.m4" "m4"
 rm {{ cookiecutter.repo_name }}/cargs.*
 {%- endif %}
 
-{%- if cookiecutter.include_finter == "yes" %}
-download_file "ax_check_zlib.m4" "m4"
-cp m4/ax_check_zlib.m4 finter/m4
-{%- endif %}
-
 {%- if cookiecutter.git_tracking == "yes" %}
 
 git init -b default > /dev/null 2>&1
