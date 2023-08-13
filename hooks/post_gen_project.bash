@@ -28,8 +28,16 @@ download_file "ax_boost_program_options.m4" "m4"
 rm {{ cookiecutter.repo_name }}/cargs.*
 {%- endif %}
 
-{%- if cookiecutter.require_boost_unit_test_framework == "no" %}
+{%- if cookiecutter.unit_test_framework == "none" %}
 rm -Rf unit_tests
+{%- endif %}
+
+{%- if cookiecutter.unit_test_framework == "boost" %}
+rm -f unit_tests/google*
+{%- endif %}
+
+{%- if cookiecutter.unit_test_framework == "google" %}
+rm -f unit_tests/boost*
 {%- endif %}
 
 {%- if cookiecutter.git_tracking == "yes" %}
@@ -51,7 +59,7 @@ git add -f tap-driver.sh
 git add -f .pre-commit-config.yaml
 {%- endif %}
 
-{%- if cookiecutter.require_boost_unit_test_framework == "yes" %}
+{%- if cookiecutter.unit_test_framework != "none" %}
 git add -f unit_tests
 {%- endif %}
 

@@ -1,4 +1,4 @@
-bin_PROGRAMS = {{ cookiecutter.repo_name }}.out {%- if cookiecutter.require_boost_unit_test_framework == "yes" %} test_suite.out {%- endif %}
+bin_PROGRAMS = {{ cookiecutter.repo_name }}.out {%- if cookiecutter.unit_test_framework != "none" %} test_suite.out {%- endif %}
 
 AM_CXXFLAGS = {%- if cookiecutter.require_boost_headers == "yes" %} $(BOOST_CPPFLAGS) {%- endif %} -ggdb -Wall -std=c++17
 
@@ -8,10 +8,16 @@ COMBINED_LDADD = {%- if cookiecutter.require_boost_headers == "yes" %} $(BOOST_L
 {{ cookiecutter.repo_name }}_out_SOURCES = {{ cookiecutter.repo_name }}/main.cc $(COMBINED_SOURCES)
 {{ cookiecutter.repo_name }}_out_LDADD = $(COMBINED_LDADD)
 
-{%- if cookiecutter.require_boost_unit_test_framework == "yes" %}
-UNIT_TEST_SOURCES = unit_tests/main.cc unit_tests/example_test.cc
+{%- if cookiecutter.unit_test_framework == "boost" %}
+UNIT_TEST_SOURCES = unit_tests/boost_main.cc unit_tests/boost_example_test.cc
 test_suite_out_SOURCES = $(COMBINED_SOURCES) $(UNIT_TEST_SOURCES)
 test_suite_out_LDADD = $(COMBINED_LDADD) -lboost_unit_test_framework
+{%- endif %}
+
+{%- if cookiecutter.unit_test_framework == "google" %}
+UNIT_TEST_SOURCES = unit_tests/google_example_test.cc
+test_suite_out_SOURCES = $(COMBINED_SOURCES) $(UNIT_TEST_SOURCES)
+test_suite_out_LDADD = $(COMBINED_LDADD) -lgtest_main -lgtest -lgmock -lpthread
 {%- endif %}
 
 dist_doc_DATA = README
